@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products</title>
+
+    <link rel="stylesheet" href="./style.css" />
+
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav>
+          <ul class="nav__list">
+            <li class="nav__item active">
+              <a onclick="navigateTo('logo')" href="#">
+                <b>Logo</b>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a onclick="navigateTo('products')" href="#"> Products </a>
+            </li>
+
+            <li class="nav__item">
+              <a onclick="navigateTo('category')" href="#">Category</a>
+            </li>
+
+            <li class="nav__item">
+              <a onclick="navigateTo('profile')" href="#">Profile</a>
+            </li>
+
+            <li class="nav__item">
+              <a onclick="navigateTo('favourites')" href="#">Favourites</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <section id="logo" class="page active">
+        <div class="content__wrapper home__content__wrapper">
+          <h1 class="home__heading">Welcome to our website!</h1>
+
+          <p class="home__paragraph">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+            ullamcorper velit. Donec vel nisi in nunc fermentum pulvinar. Nullam
+            fringilla, justo ac fermentum vulputate, sapien metus placerat
+            tellus, nec faucibus lectus neque vel mi.
+          </p>
+        </div>
+      </section>
+
+      <section id="products" class="page">
+        <div class="content__wrapper">
+          <div>
+            <label for="search"></label>
+            <input
+              type="text"
+              name="search"
+              id="search"
+              placeholder="Search products..."
+              class="search_products"
+            />
+
+            <button class="add_product btn">Add Product</button>
+          </div>
+
+          <div class="products">
+            <h2>Products List</h2>
+
+            <div class="products__list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="category" class="page">
+        <div class="content__wrapper">
+          <div>
+            <h3>Categories</h3>
+
+            <label for="newCategory"></label>
+            <input
+              type="text"
+              name="newCategory"
+              id="newCategory"
+              placeholder="Enter new category name"
+            />
+          </div>
+
+          <button class="add_category btn">Add Category</button>
+        </div>
+      </section>
+
+      <section id="profile" class="page">
+        <div class="content__wrapper">
+          <div>
+            <h3>User Profile</h3>
+
+            <ul>
+              <li>Name:</li>
+              <li>Email:</li>
+              <li>Address:</li>
+              <li>Phone:</li>
+            </ul>
+
+            <button class="edit_profile btn">Edit Profile</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="favourites" class="page">
+        <h2>Liked Products</h2>
+
+        <div class="liked__list"></div>
+      </section>
+    </div>
+
+    <script>
+      function navigateTo(pageId) {
+        document
+          .querySelectorAll(".page")
+          .forEach((page) => page.classList.remove("active"));
+        document.getElementById(pageId).classList.add("active");
+
+        document
+          .querySelectorAll(".nav__item")
+          .forEach((item) => item.classList.remove("active"));
+        document
+          .querySelector(`[onclick="navigateTo('${pageId}')"]`)
+          .parentElement.classList.add("active");
+      }
+    </script>
+  </body>
+</html>
