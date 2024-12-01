@@ -180,7 +180,8 @@ header {
 }
 
 .products__list__heading,
-.favourites__heading {
+.favourites__heading,
+.profile__heading {
   color: var(--primary-dark-gray);
   font-size: 1.7rem;
 }
@@ -349,7 +350,8 @@ header {
   background-color: #344b6b;
 }
 
-.caregories__wrapper {
+.caregories__wrapper,
+.profile__wrapper {
   background-color: #fff;
   max-width: 900px;
   margin: 2% auto;
@@ -429,4 +431,21 @@ header {
 
 .btn_edit {
   background-color: lightblue;
+}
+
+.profile__wrapper {
+  gap: 20px;
+}
+
+.profile__list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  color: var(--primary-dark-gray);
+  font-weight: bolder;
+}
+
+.edit_profile__btn {
+  background-color: #3b82f6;
+  width: 120px;
 }

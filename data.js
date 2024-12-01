@@ -75,9 +75,11 @@ export const data = {
   getCategories() {
     return this.categories;
   },
+
   addCategory(newCategory) {
     this.categories.push({ ...newCategory });
   },
+
   deleteCategory(id) {
     this.categories = this.categories.filter((category) => category.id !== id);
   },
