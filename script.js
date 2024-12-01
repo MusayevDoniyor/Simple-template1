@@ -12,6 +12,8 @@ const modal_form_submit_btn = document.getElementById("modal_form_submit_btn");
 const addCategoryBtn = document.getElementById("addCategoryBtn");
 const categoriesContainer = document.getElementById("categories_list");
 
+const likedsContainer = document.getElementById("likeds_list");
+
 modal_open_btn.addEventListener("click", () => {
   modal.style.display = "block";
 });
@@ -97,6 +99,7 @@ addProductForm.addEventListener("submit", (e) => {
 const toggleLike = (id) => {
   data.toggleLikeProduct(id);
   renderProducts(data.getProducts());
+  renderLikeds(data.getLikeds());
 };
 
 const deleteProduct = (id) => {
@@ -171,5 +174,35 @@ addCategoryBtn.addEventListener("click", (e) => {
   document.getElementById("newCategory").value = "";
 });
 
+const renderLikeds = (likeds) => {
+  likedsContainer.innerHTML = "";
+
+  likeds.forEach((liked) => {
+    const likedItem = document.createElement("div");
+    likedItem.classList.add("liked_item");
+    likedItem.innerHTML = `
+      <h3 class='liked__name'>${liked.name}</h3>
+      <p class='liked__info'>${liked.info}</p>
+      <p class='liked__price'>
+        Price: <strong>$${liked.price}</strong>
+      </p>
+      <img class='liked__img' src="${liked.img}" alt="${liked.name}" />
+      <button class="btn btn_unlike" data-id="${liked.id}">Unlike</button>
+    `;
+
+    likedsContainer.appendChild(likedItem);
+
+    const unlikeButton = likedItem.querySelector(".btn_unlike");
+
+    unlikeButton.addEventListener("click", () => {
+      toggleLike(liked.id);
+      renderLikeds(data.getLikeds());
+    });
+  });
+};
+
 renderProducts(data.getProducts());
 renderCategories(data.getCategories());
+renderLikeds(data.getLikeds());
+
+console.log(data.likeds);

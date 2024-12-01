@@ -81,4 +81,9 @@ export const data = {
   deleteCategory(id) {
     this.categories = this.categories.filter((category) => category.id !== id);
   },
+
+  // * Likeds actions
+  getLikeds() {
+    return this.likeds;
+  },
 };
