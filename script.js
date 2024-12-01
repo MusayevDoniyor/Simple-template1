@@ -14,6 +14,9 @@ const categoriesContainer = document.getElementById("categories_list");
 
 const likedsContainer = document.getElementById("likeds_list");
 
+const editProfileBtn = document.querySelector(".edit_profile__btn");
+const profileItems = document.querySelectorAll(".profile__list__item");
+
 modal_open_btn.addEventListener("click", () => {
   modal.style.display = "block";
 });
@@ -200,6 +203,32 @@ const renderLikeds = (likeds) => {
     });
   });
 };
+
+editProfileBtn.addEventListener("click", () => {
+  if (editProfileBtn.textContent === "Edit Profile") {
+    profileItems.forEach((item) => {
+      const currentValue = item.textContent.split(":")[1]?.trim() || "";
+      const input = document.createElement("input");
+      input.type = "text";
+      input.value = currentValue;
+      input.classList.add("profile__input");
+      item.innerHTML = `${item.textContent.split(":")[0]}: `;
+      item.appendChild(input);
+    });
+    editProfileBtn.textContent = "Save Profile";
+  } else {
+    profileItems.forEach((item) => {
+      const input = item.querySelector("input");
+      if (input) {
+        const updatedValue = input.value.trim();
+        item.innerHTML = `${item.textContent.split(":")[0]}: ${
+          updatedValue || "Not Provided"
+        }`;
+      }
+    });
+    editProfileBtn.textContent = "Edit Profile";
+  }
+});
 
 renderProducts(data.getProducts());
 renderCategories(data.getCategories());
